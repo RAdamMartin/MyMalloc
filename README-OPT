@@ -1,0 +1,18 @@
+Improvements:
+The first improvement was changing the header on each file to remove the short
+indicating freeness and replace it with a pointer linking to a free block if
+the current block is free, or else to NULL.  This allowed for quick iteration
+through all free blocks instead of going through all blocks in memory looking
+for a free location.  This also allowed the implementation of a best-fit
+algorithm since a loop through all blocks was no longer required, just a search
+through all free blocks. The other improvement was to coalesce blocks when they
+are freed, first by folding in all free blocks following the freed block, and 
+then checking if the preceding block is free, and coalescing if it is.  
+
+Design choices:
+Best fit and coalescing were implemented using a list of free blocks so that 
+iterating through all blocks would not be required to find the best fit.  To
+further limit the time spent finding a best fit, the code immediately accepts 
+a fit up to a header's size larger than the size required and breaks without
+checking the rest of the free blocks.  This and other complication inspired 
+having all coalescing occur in myfree and not during the malloc call. 

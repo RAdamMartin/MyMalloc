@@ -1,0 +1,11 @@
+Data Structures:
+     For this implementation I used a linked list system with header files 
+containing the status of the current block (free, in-use or endpoint) and a link
+to the next header.  This meant I tracked the end of my heap by simply having
+a header that linked to itself at the very end.  
+
+Memory (re)allocation:
+     For memory allocation, the code iterates over all headers until it either
+finds a header of a free block large enough to fit the requested size, or it 
+reaches the end of the heap, at which point it calls sbrk to extend the heap by
+the size required, plus padding room for a new header. 
