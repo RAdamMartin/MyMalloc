@@ -1,3 +1,5 @@
+NOTE: This repo is a copy of a SVN repo of an assignment done in 2014 for a University course.
+
 Data Structures:
      For this implementation I used a linked list system with header files 
 containing the status of the current block (free, in-use or endpoint) and a link
